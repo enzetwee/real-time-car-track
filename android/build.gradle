@@ -1,10 +1,4 @@
-// ✅ Bagian plugin versi baru
-plugins {
-    id 'com.android.application' version '8.6.0' apply false
-    id 'org.jetbrains.kotlin.android' version '1.9.22' apply false
-}
-
-// ✅ Buildscript untuk compat (opsional tapi aman)
+// ✅ 1. buildscript harus duluan
 buildscript {
     repositories {
         google()
@@ -16,7 +10,13 @@ buildscript {
     }
 }
 
-// ✅ Repositori untuk semua subproject
+// ✅ 2. Baru plugins
+plugins {
+    id 'com.android.application' version '8.6.0' apply false
+    id 'org.jetbrains.kotlin.android' version '1.9.22' apply false
+}
+
+// ✅ 3. Repo buat semua project
 allprojects {
     repositories {
         google()
@@ -24,7 +24,7 @@ allprojects {
     }
 }
 
-// ✅ Struktur folder dan dependensi evaluasi
+// ✅ 4. Build folder structure
 rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
@@ -33,7 +33,7 @@ subprojects {
     project.evaluationDependsOn(':app')
 }
 
-// ✅ Task untuk bersih-bersih build
+// ✅ 5. Clean task
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
