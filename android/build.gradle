@@ -1,14 +1,22 @@
+// ✅ Bagian plugin versi baru
+plugins {
+    id 'com.android.application' version '8.6.0' apply false
+    id 'org.jetbrains.kotlin.android' version '1.9.22' apply false
+}
+
+// ✅ Buildscript untuk compat (opsional tapi aman)
 buildscript {
     repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.6.0' 
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22' 
+        classpath 'com.android.tools.build:gradle:8.6.0'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22'
     }
 }
 
+// ✅ Repositori untuk semua subproject
 allprojects {
     repositories {
         google()
@@ -16,7 +24,7 @@ allprojects {
     }
 }
 
-// Bagian lainnya tetap seperti yang kamu kirim
+// ✅ Struktur folder dan dependensi evaluasi
 rootProject.buildDir = '../build'
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
@@ -25,6 +33,7 @@ subprojects {
     project.evaluationDependsOn(':app')
 }
 
+// ✅ Task untuk bersih-bersih build
 tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
